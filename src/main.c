@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:11:41 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/10 19:11:45 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/23 08:11:39 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	main(int argc, char *argv[])
 {
+	(void)argc;
+	(void)argv;
 	return (0);
 }
