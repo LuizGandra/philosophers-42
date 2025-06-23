@@ -7,11 +7,16 @@ RM := rm -rf
 INCLUDES_DIR := include
 INCLUDES := -I$(INCLUDES_DIR)
 
-HEADERS := $(INCLUDES_DIR)/philosophers.h
+HEADERS := $(INCLUDES_DIR)/philosophers.h $(INCLUDES_DIR)/errors.h
 
 SRC_DIR := src
 SRCS := \
-	main.c
+	main.c \
+	validation.c \
+	handle_errors.c \
+	init.c \
+	global.c \
+	utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 OBJ_DIR := build
