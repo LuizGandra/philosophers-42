@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/23 09:23:52 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/25 09:48:01 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,79 @@
 # define PHILOSOPHERS_H
 
 # include "errors.h"
+# include "ft_calloc.h"
 
-# include <unistd.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <sys/time.h>
 
-typedef struct s_rules
+# define MAX_PHILOSOPHERS 200
+
+typedef enum e_philosopher_state
+{
+	THINKING,
+	EATING,
+	SLEEPING,
+	GETTING_FORK,
+	DEAD
+}	t_philosopher_state;
+
+typedef struct s_thread
+{
+	pthread_t thread;
+	void *(*fun)(void *);
+	void *args;
+}	t_thread;
+
+typedef struct s_aux_mutexes
+{
+	pthread_mutex_t print_mtx;
+	pthread_mutex_t meals_mtx;
+	pthread_mutex_t dead_mtx;
+}	t_aux_mutexes;
+
+typedef struct s_forks
+{
+	pthread_mutex_t *left;
+	pthread_mutex_t *right;
+}	t_forks;
+
+typedef struct s_philosopher
+{
+	int id;
+	int meals_eaten;
+	int last_meal_time;
+	t_thread thread;
+	t_forks forks;
+}	t_philosopher;
+
+typedef struct s_data
 {
 	int	num_philosophers;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
+	int time_to_think;
 	int	num_meals;
+	int	has_anyone_died;
 	int finished;
-}	t_rules;
+	t_philosopher *philosophers;
+}	t_data;
 
 // VALIDATION
 int	validate_args(int argc, char *argv[]);
 
 // INIT
-int	init_rules(int argc, char *argv[]);
+int	init_data(int argc, char *argv[]);
+int init_philosopher(void);
 
 // HANDLE ERRORS
 int handle_error(const char *error_message, const int error_code);
 
 // GLOBALS
-t_rules *get_rules(void);
+t_data *get_data(void);
 
 // UTILS
 int	ft_strlen(const char *str);

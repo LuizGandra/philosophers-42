@@ -19,10 +19,7 @@
 
 // ERRORS
 # define ERROR_INVALID_ARGS C_RED"Invalid number of arguments. Expected 4 or 5 arguments.\n"C_RESET
-
-// ? + sign is valid? if no, change to "Please enter unsigned numeric values."
-# define ERROR_INVALID_ARG_TYPE C_RED"Invalid argument type. Please enter positive numeric values.\n"C_RESET
-
+# define ERROR_INVALID_ARG_TYPE C_RED"Invalid argument type. Please enter unsigned numeric values.\n"C_RESET
 # define ERROR_INVALID_NUM_PHILO C_RED"Invalid number of philosophers. Must be at least 1.\n"C_RESET
 
 #endif

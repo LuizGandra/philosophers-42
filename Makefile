@@ -4,23 +4,25 @@ CC := clang
 CFLAGS := -Wall -Werror -Wextra
 RM := rm -rf
 
-INCLUDES_DIR := include
-INCLUDES := -I$(INCLUDES_DIR)
+INCLUDE_DIR := include
+INCLUDES := -I$(INCLUDE_DIR)
 
-HEADERS := $(INCLUDES_DIR)/philosophers.h $(INCLUDES_DIR)/errors.h
+HEADERS := $(INCLUDE_DIR)/philosophers.h $(INCLUDE_DIR)/errors.h $(INCLUDE_DIR)/ft_calloc.h
 
 SRC_DIR := src
+LIB_DIR := lib
 SRCS := \
 	main.c \
 	validation.c \
 	handle_errors.c \
 	init.c \
 	global.c \
-	utils.c
+	utils.c \
+	$(LIB_DIR)/ft_calloc.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
-OBJ_DIR := build
-OBJECTS := $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+BUILD_DIR := build
+OBJECTS := $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 VALGRIND := valgrind
 VALGRIND_FLAGS := --leak-check=full --show-leak-kinds=all --track-origins=yes
@@ -28,19 +30,17 @@ VALGRIND_FLAGS := --leak-check=full --show-leak-kinds=all --track-origins=yes
 GDB := gdb
 GDB_FLAGS := -tui -args
 
-all: $(MLX) $(OBJ_DIR) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR):
-	mkdir -p $@
-
 clean:
-	$(RM) $(OBJ_DIR)
+	$(RM) $(BUILD_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

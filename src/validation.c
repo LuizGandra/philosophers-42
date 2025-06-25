@@ -31,5 +31,5 @@ int	validate_args(int argc, char *argv[])
 		}
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
