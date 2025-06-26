@@ -7,18 +7,20 @@ RM := rm -rf
 INCLUDE_DIR := include
 INCLUDES := -I$(INCLUDE_DIR)
 
-HEADERS := $(INCLUDE_DIR)/philosophers.h $(INCLUDE_DIR)/errors.h $(INCLUDE_DIR)/ft_calloc.h
+HEADERS := philosophers.h errors.h ft_calloc.h mutex.h
+HEADERS := $(addprefix $(INCLUDE_DIR)/, $(HEADERS))
 
 SRC_DIR := src
 LIB_DIR := lib
 SRCS := \
 	main.c \
 	validation.c \
-	handle_errors.c \
+	errors.c \
 	init.c \
 	global.c \
 	utils.c \
-	$(LIB_DIR)/ft_calloc.c
+	$(LIB_DIR)/ft_calloc.c \
+	$(LIB_DIR)/mutex.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 BUILD_DIR := build

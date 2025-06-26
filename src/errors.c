@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 19:54:56 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 20:05:24 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 19:52:21 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 19:52:44 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	validate_args(int argc, char *argv[])
+int	handle_error(const char *error_message, const int error_code)
 {
-	int	i;
-	int	j;
-
-	if (argc < 5 || argc > 6)
-		return (handle_error(E_INVALID_ARGS, 1));
-	i = 1;
-	while (i < argc)
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-				return (handle_error(E_INVALID_ARG, 1));
-			j++;
-		}
-		i++;
-	}
-	return (EXIT_SUCCESS);
+	write(2, error_message, ft_strlen(error_message));
+	return (error_code);
 }

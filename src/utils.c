@@ -22,7 +22,7 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	sign;
 	int	result;

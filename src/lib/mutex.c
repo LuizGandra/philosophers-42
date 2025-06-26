@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mutex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 19:11:41 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 19:55:39 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 18:28:43 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 20:06:18 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "mutex.h"
 
-int	main(int argc, char *argv[])
+static t_mutex	*get_mutex(void)
 {
-	// * 1. Validate arguments
-	if (validate_args(argc, argv) != 0)
+	static t_mutex	mutex;
+
+	return (&mutex);
+}
+
+int	init_mutex(pthread_mutex_t *mutex)
+{
+	t_mutex	*mtx;
+
+	mtx = get_mutex();
+	if (pthread_mutex_init(mutex, NULL))
 		return (EXIT_FAILURE);
-	// * 2. Initialize data
-	if (init_data(argc, argv) != 0)
-		return (EXIT_FAILURE);
-	// * 3. Initialize philosophers
-	if (init_philosopher() != 0)
-		return (EXIT_FAILURE);
-	// TODO 4. Initialize auxiliar mutexes
-	// TODO 5. Initialize tasks
+	mtx->list[mtx->i] = mutex;
+	mtx->i++;
 	return (EXIT_SUCCESS);
+}
+
+void	clear_mutex(void)
+{
+	t_mutex	*mtx;
+
+	mtx = get_mutex();
+	while (mtx->i > 0)
+	{
+		mtx->i--;
+		pthread_mutex_destroy(mtx->list[mtx->i]);
+		mtx->list[mtx->i] = NULL;
+	}
 }

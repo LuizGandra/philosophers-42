@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 09:18:52 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/25 09:18:52 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 19:57:22 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 19:57:43 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_heap	*get_heap(void)
 {
-	static t_heap heap;
+	static t_heap	heap;
 
 	return (&heap);
 }
@@ -34,7 +34,7 @@ void	*ft_calloc(size_t size)
 	return (ptr);
 }
 
-void	ft_clear_mem(void)
+void	ft_clear_heap(void)
 {
 	t_heap	*heap;
 

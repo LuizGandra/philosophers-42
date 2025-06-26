@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   mutex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 19:54:56 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 20:05:24 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 19:53:04 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 19:54:10 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef MUTEX_H
+# define MUTEX_H
 
-int	validate_args(int argc, char *argv[])
+# include <pthread.h>
+# include <stdlib.h>
+
+typedef struct s_mutex
 {
-	int	i;
-	int	j;
+	pthread_mutex_t	*list[1000];
+	int				i;
+}					t_mutex;
 
-	if (argc < 5 || argc > 6)
-		return (handle_error(E_INVALID_ARGS, 1));
-	i = 1;
-	while (i < argc)
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-				return (handle_error(E_INVALID_ARG, 1));
-			j++;
-		}
-		i++;
-	}
-	return (EXIT_SUCCESS);
-}
+void				clear_mutex(void);
+int					init_mutex(pthread_mutex_t *mutex);
+
+#endif

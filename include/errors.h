@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/23 09:22:42 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 19:59:29 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 20:11:05 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define C_RESET "\033[0m"
 
 // ERRORS
-# define ERROR_INVALID_ARGS C_RED"Invalid number of arguments. Expected 4 or 5 arguments.\n"C_RESET
-# define ERROR_INVALID_ARG_TYPE C_RED"Invalid argument type. Please enter unsigned numeric values.\n"C_RESET
-# define ERROR_INVALID_NUM_PHILO C_RED"Invalid number of philosophers. Must be at least 1.\n"C_RESET
+# define E_INVALID_ARGS "\033[1;31mExpected 4 or 5 arguments.\n\033[0m"
+# define E_INVALID_ARG "\033[1;31mEnter only unsigned numeric values.\n\033[0m"
+# define E_INVALID_PHILOS "\033[1;31mMust be at least 1 philosopher.\n\033[0m"
 
 #endif
