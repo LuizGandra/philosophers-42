@@ -17,6 +17,7 @@ SRCS := \
 	validation.c \
 	errors.c \
 	init.c \
+	tasks.c \
 	global.c \
 	utils.c \
 	$(LIB_DIR)/ft_calloc.c \

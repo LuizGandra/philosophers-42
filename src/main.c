@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:11:41 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 19:55:39 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/26 20:46:00 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ int	main(int argc, char *argv[])
 	// * 3. Initialize philosophers
 	if (init_philosopher() != 0)
 		return (EXIT_FAILURE);
-	// TODO 4. Initialize auxiliar mutexes
-	// TODO 5. Initialize tasks
+	// * 4. Initialize auxiliar mutexes
+	if (init_aux_mutexes() != 0)
+		return (EXIT_FAILURE);
+	// * 5. Initialize tasks
+	if (init_task() != 0)
+		return (EXIT_FAILURE);
+	// TODO create exit function
+	ft_clear_heap();
+	clear_mutex();
 	return (EXIT_SUCCESS);
 }

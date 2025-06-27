@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global.c                                           :+:      :+:    :+:   */
+/*   tasks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 19:56:14 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 21:04:18 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/26 20:41:59 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/26 21:07:14 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_data	*get_data(void)
+void	*solo_task(void *args)
 {
-	static t_data	data;
+	t_philosopher	*philosopher;
+	t_data			*data;
 
-	return (&data);
+	data = get_data();
+	philosopher = (t_philosopher *)args;
+	// TODO print_status(philosopher->id, GETTING_FORK);
+	// TODO while (!check_death(philosopher->id))
+	// 	TODO sleep_ms(data->time_to_sleep);
+	return (NULL);
 }
 
-t_aux_mutexes	*get_aux_mutexes(void)
+void	*common_task(void *args)
 {
-	static t_aux_mutexes	aux_mutexes;
-
-	return (&aux_mutexes);
+	// TODO
+	(void)args;
+	return (NULL);
 }

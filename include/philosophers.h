@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 19:51:19 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/26 21:04:38 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef enum e_philosopher_state
 
 typedef struct s_aux_mutexes
 {
-	pthread_mutex_t	print_mtx;
-	pthread_mutex_t	meals_mtx;
-	pthread_mutex_t	dead_mtx;
+	pthread_mutex_t	print;
+	pthread_mutex_t	meals;
+	pthread_mutex_t	death;
 }					t_aux_mutexes;
 
 typedef struct s_forks
@@ -75,12 +75,18 @@ int					validate_args(int argc, char *argv[]);
 int					init_data(int argc, char *argv[]);
 int					init_philosopher(void);
 
+// TASKS
+void				*solo_task(void *args);
+void				*common_task(void *args);
+
 // HANDLE ERRORS
-int					handle_error(const char *error_message,
-						const int error_code);
+int					handle_error(const char *error_message);
+int					init_aux_mutexes(void);
+int					init_task(void);
 
 // GLOBALS
 t_data				*get_data(void);
+t_aux_mutexes		*get_aux_mutexes(void);
 
 // UTILS
 int					ft_strlen(const char *str);
