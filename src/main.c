@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:11:41 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:50:34 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:46:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	if (init_task() != 0)
 		return (EXIT_FAILURE);
-	watch();
 	ft_clear_heap();
 	clear_mutex();
 	return (EXIT_SUCCESS);

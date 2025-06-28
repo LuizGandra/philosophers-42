@@ -6,19 +6,32 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:52:21 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:50:44 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:06:47 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	handle_error(char *error_msg, int clear)
+int	handle_error(char *error_msg, t_error_options option)
 {
-	write(2, error_msg, ft_strlen(error_msg));
-	if (clear)
+	if (option == CLEAN)
 	{
 		ft_clear_heap();
 		clear_mutex();
 	}
+	else if (option == SHOW_HELP)
+	{
+		const char *help_msg = C_WHITE"\nUsage: ./philo\n"
+			"	number_of_philosophers\n"
+			"	time_to_die\n"
+			"	time_to_eat\n"
+			"	time_to_sleep\n"
+			"	[number_of_times_each_philosopher_must_eat]\n\n"
+			"All arguments must be unsigned integers.\n\n"C_RESET;
+			
+		write(2, help_msg, ft_strlen(help_msg));
+		return (EXIT_FAILURE);
+	}
+	write(2, error_msg, ft_strlen(error_msg));
 	return (EXIT_FAILURE);
 }

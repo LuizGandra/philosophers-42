@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:16:18 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:41:38 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:46:18 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ static int	completed_all_meals(void)
 		pthread_mutex_unlock(&get_aux_mutexes()->meals);
 		return (1);
 	}
+	watch();
 	return (0);
 }

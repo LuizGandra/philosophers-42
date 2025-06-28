@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:54:56 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:49:32 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:01:49 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	validate_args(int argc, char *argv[])
 	int	j;
 
 	if (argc < 5 || argc > 6)
-		return (handle_error(E_INVALID_ARGS, 0));
+		return (handle_error(E_INVALID_ARGC, SHOW_HELP));
 	i = 1;
 	while (i < argc)
 	{
@@ -26,7 +26,7 @@ int	validate_args(int argc, char *argv[])
 		while (argv[i][j])
 		{
 			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-				return (handle_error(E_INVALID_VAL, 0));
+				return (handle_error(E_INVALID_ARGS, SHOW_HELP));
 			j++;
 		}
 		i++;

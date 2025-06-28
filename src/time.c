@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 19:45:02 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 19:45:31 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:36:31 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	get_current_time(void);
 
-void	sleep_ms(int ms)
+void	sleep_ms(long long ms)
 {
+	// ? CHECK THIS FUNCTION
 	if (ms > 0)
 		usleep(ms * 1000);
 }

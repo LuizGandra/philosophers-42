@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 20:41:59 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:36:09 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:22:44 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*solo_task(void *args)
 	philosopher = (t_philosopher *)args;
 	print_state(philosopher, GETTING_FORK);
 	while (!has_anyone_died())
-		sleep_ms(data->time_to_sleep);
+		sleep_ms(data->time_to_die / 2);
 	return (NULL);
 }
 

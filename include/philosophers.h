@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:49:23 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:52:44 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,11 @@ typedef struct s_data
 t_data				*get_data(void);
 t_aux_mutexes		*get_aux_mutexes(void);
 
-// HANDLE ERRORS
-int					handle_error(char *error_message, int clear);
-int					init_aux_mutexes(void);
-int					init_task(void);
-
 // INIT
 int					init_data(int argc, char *argv[]);
 int					init_philosopher(void);
+int					init_aux_mutexes(void);
+int					init_task(void);
 
 // PRINT
 void				print_state(t_philosopher *philosopher,
@@ -96,7 +93,7 @@ void				*common_task(void *args);
 void				*solo_task(void *args);
 
 // TIME
-void				sleep_ms(int ms);
+void				sleep_ms(long long ms);
 int					get_time(void);
 
 // UTILS

@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:51:39 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:49:30 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:53:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	init_data(int argc, char *argv[])
 	data->num_philosophers = ft_atoi(argv[1]);
 	if (data->num_philosophers <= 0
 		|| data->num_philosophers > MAX_PHILOSOPHERS)
-		return (handle_error(E_INVALID_PHILOS, 0));
+		return (handle_error(E_INVALID_PHILOS, DEFAULT));
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
@@ -34,7 +34,6 @@ int	init_data(int argc, char *argv[])
 		data->meals_goal = ft_atoi(argv[5]);
 	else
 		data->meals_goal = -1;
-	data->has_completed_meals = 0;
 	data->philosophers = (t_philosopher *)ft_calloc(sizeof(t_philosopher)
 			* data->num_philosophers);
 	return (EXIT_SUCCESS);
@@ -63,11 +62,11 @@ int	init_aux_mutexes(void)
 
 	aux_mtx = get_aux_mutexes();
 	if (init_mutex(&(aux_mtx->print)))
-		return (handle_error(E_MUTEX_INIT, 1));
+		return (handle_error(E_MUTEX_INIT, CLEAN));
 	if (init_mutex(&(aux_mtx->meals)))
-		return (handle_error(E_MUTEX_INIT, 1));
+		return (handle_error(E_MUTEX_INIT, CLEAN));
 	if (init_mutex(&(aux_mtx->death)))
-		return (handle_error(E_MUTEX_INIT, 1));
+		return (handle_error(E_MUTEX_INIT, CLEAN));
 	return (EXIT_SUCCESS);
 }
 
@@ -109,7 +108,7 @@ int	init_task(void)
 		philosopher = &data->philosophers[0];
 		if (pthread_create(&philosopher->thread, NULL, &solo_task,
 				philosopher) != 0)
-			return (handle_error(E_THREAD_INIT, 1));
+			return (handle_error(E_THREAD_INIT, CLEAN));
 	}
 	else
 	{
@@ -119,7 +118,7 @@ int	init_task(void)
 			philosopher = &data->philosophers[i];
 			if (pthread_create(&philosopher->thread, NULL, &common_task,
 					philosopher) != 0)
-				return (handle_error(E_THREAD_INIT, 1));
+				return (handle_error(E_THREAD_INIT, CLEAN));
 			i++;
 		}
 	}
