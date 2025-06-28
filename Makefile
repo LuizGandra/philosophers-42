@@ -40,11 +40,11 @@ GDB_FLAGS := -tui -args
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -g3 -O0
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ -g3 -O0
 
 clean:
 	$(RM) $(BUILD_DIR)
