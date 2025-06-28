@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 19:43:18 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/27 21:21:01 by lcosta-g         ###   ########.fr       */
+/*   Created: 2025/06/27 19:45:02 by lcosta-g          #+#    #+#             */
+/*   Updated: 2025/06/27 19:45:31 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_strlen(const char *str)
-{
-	int	len;
+static int	get_current_time(void);
 
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
+void	sleep_ms(int ms)
+{
+	if (ms > 0)
+		usleep(ms * 1000);
 }
 
-int	ft_atoi(const char *str)
+int	get_time(void)
 {
-	int	sign;
-	int	result;
+	static int	start_time;
 
-	sign = 1;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
+	if (start_time == 0)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		start_time = get_current_time();
+		return (0);
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * sign);
+	return (get_current_time() - start_time);
+}
+
+static int	get_current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/26 21:04:38 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:49:23 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,53 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_to_think;
-	int				num_meals;
+	int				meals_goal;
 	int				has_anyone_died;
-	int				finished;
+	int				has_completed_meals;
 	t_philosopher	*philosophers;
 }					t_data;
-
-// VALIDATION
-int					validate_args(int argc, char *argv[]);
-
-// INIT
-int					init_data(int argc, char *argv[]);
-int					init_philosopher(void);
-
-// TASKS
-void				*solo_task(void *args);
-void				*common_task(void *args);
-
-// HANDLE ERRORS
-int					handle_error(const char *error_message);
-int					init_aux_mutexes(void);
-int					init_task(void);
 
 // GLOBALS
 t_data				*get_data(void);
 t_aux_mutexes		*get_aux_mutexes(void);
 
+// HANDLE ERRORS
+int					handle_error(char *error_message, int clear);
+int					init_aux_mutexes(void);
+int					init_task(void);
+
+// INIT
+int					init_data(int argc, char *argv[]);
+int					init_philosopher(void);
+
+// PRINT
+void				print_state(t_philosopher *philosopher,
+						t_philosopher_state state);
+
+// STATE
+void				p_eat(t_philosopher *philosopher);
+void				p_get_fork(t_philosopher *philosopher);
+void				p_sleep(t_philosopher *philosopher);
+void				p_think(t_philosopher *philosopher);
+
+// TASKS
+void				*common_task(void *args);
+void				*solo_task(void *args);
+
+// TIME
+void				sleep_ms(int ms);
+int					get_time(void);
+
 // UTILS
-int					ft_strlen(const char *str);
 int					ft_atoi(const char *str);
+int					ft_strlen(const char *str);
+
+// VALIDATION
+int					has_anyone_died(void);
+int					has_completed_meals(void);
+int					validate_args(int argc, char *argv[]);
+
+// WATCH
+void				watch(void);
 
 #endif

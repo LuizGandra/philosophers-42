@@ -14,12 +14,16 @@ SRC_DIR := src
 LIB_DIR := lib
 SRCS := \
 	main.c \
-	validation.c \
 	errors.c \
-	init.c \
-	tasks.c \
 	global.c \
+	init.c \
+	print.c \
+	states.c \
+	tasks.c \
+	time.c \
 	utils.c \
+	validation.c \
+	watch.c \
 	$(LIB_DIR)/ft_calloc.c \
 	$(LIB_DIR)/mutex.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
