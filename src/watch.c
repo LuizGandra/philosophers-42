@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:16:18 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/28 13:57:04 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:06:15 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int completed_all_meals(void)
 	while (i < data->num_philosophers)
 	{
 		pthread_mutex_lock(&get_aux_mutexes()->meals);
-		if (data->philosophers[i].meals_eaten >= data->meals_goal)
+		if (data->philosophers[i].meals_eaten >= data->meals_goal && data->meals_goal > 0)
 			count++;
 		pthread_mutex_unlock(&get_aux_mutexes()->meals);
 		i++;
