@@ -15,6 +15,7 @@ LIB_DIR := lib
 SRCS := \
 	main.c \
 	errors.c \
+	exit.c \
 	global.c \
 	init.c \
 	print.c \
@@ -55,7 +56,7 @@ fclean: clean
 re: fclean all
 
 vg: all
-	$(VALGRIND) $(VALGRIND_FLAGS) ./$(NAME) $(MAP)
+	$(VALGRIND) $(VALGRIND_FLAGS) ./$(NAME) $(NP) $(TD) $(TE) $(TS)
 
 gdb: all
 	$(GDB) $(GDB_FLAGS) ./$(NAME) $(MAP)

@@ -6,19 +6,19 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:16:18 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/28 14:08:21 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:23:38 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int is_philosopher_dead(t_philosopher *philosopher);
-static int completed_all_meals(void);
+static int	is_philosopher_dead(t_philosopher *philosopher);
+static int	completed_all_meals(void);
 
-void watch(void)
+void	watch(void)
 {
-	t_data *data;
-	int i;
+	t_data	*data;
+	int		i;
 
 	data = get_data();
 	while (1)
@@ -27,17 +27,17 @@ void watch(void)
 		while (i < data->num_philosophers)
 		{
 			if (is_philosopher_dead(&data->philosophers[i]))
-				return;
+				return ;
 			if (completed_all_meals())
-				return;
+				return ;
 			i++;
 		}
 	}
 }
 
-static int is_philosopher_dead(t_philosopher *philosopher)
+static int	is_philosopher_dead(t_philosopher *philosopher)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = get_data();
 	pthread_mutex_lock(&get_aux_mutexes()->meals);
@@ -54,11 +54,11 @@ static int is_philosopher_dead(t_philosopher *philosopher)
 	return (0);
 }
 
-static int completed_all_meals(void)
+static int	completed_all_meals(void)
 {
-	t_data *data;
-	int count;
-	int i;
+	t_data	*data;
+	int		count;
+	int		i;
 
 	data = get_data();
 	count = 0;
@@ -66,7 +66,8 @@ static int completed_all_meals(void)
 	while (i < data->num_philosophers)
 	{
 		pthread_mutex_lock(&get_aux_mutexes()->meals);
-		if (data->philosophers[i].meals_eaten >= data->meals_goal && data->meals_goal > 0)
+		if (data->philosophers[i].meals_eaten >= data->meals_goal
+			&& data->meals_goal > 0)
 			count++;
 		pthread_mutex_unlock(&get_aux_mutexes()->meals);
 		i++;

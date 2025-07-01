@@ -6,17 +6,17 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:51:39 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/28 22:58:13 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:23:53 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int init_forks(t_forks *forks, int i);
+static int	init_forks(t_forks *forks, int i);
 
-int init_data(int argc, char *argv[])
+int	init_data(int argc, char *argv[])
 {
-	t_data *data;
+	t_data	*data;
 
 	data = get_data();
 	data->num_philosophers = ft_atoi(argv[1]);
@@ -27,21 +27,23 @@ int init_data(int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->time_to_think = data->time_to_die - data->time_to_eat - data->time_to_sleep;
+	data->time_to_think = data->time_to_die - data->time_to_eat
+		- data->time_to_sleep;
 	if (data->time_to_think > 5)
 		data->time_to_think = 5;
 	if (argc == 6)
 		data->meals_goal = ft_atoi(argv[5]);
 	else
 		data->meals_goal = -1;
-	data->philosophers = (t_philosopher *)ft_calloc(sizeof(t_philosopher) * data->num_philosophers);
+	data->philosophers = (t_philosopher *)ft_calloc(sizeof(t_philosopher)
+			* data->num_philosophers);
 	return (EXIT_SUCCESS);
 }
 
-int init_philosopher(void)
+int	init_philosopher(void)
 {
-	t_data *data;
-	int i;
+	t_data	*data;
+	int		i;
 
 	data = get_data();
 	i = 0;
@@ -55,9 +57,9 @@ int init_philosopher(void)
 	return (EXIT_SUCCESS);
 }
 
-int init_aux_mutexes(void)
+int	init_aux_mutexes(void)
 {
-	t_aux_mutexes *aux_mtx;
+	t_aux_mutexes	*aux_mtx;
 
 	aux_mtx = get_aux_mutexes();
 	if (init_mutex(&(aux_mtx->print)))
@@ -69,10 +71,10 @@ int init_aux_mutexes(void)
 	return (EXIT_SUCCESS);
 }
 
-static int init_forks(t_forks *forks, int i)
+static int	init_forks(t_forks *forks, int i)
 {
-	static t_forks *first_forks;
-	static pthread_mutex_t *last_fork;
+	static t_forks			*first_forks;
+	static pthread_mutex_t	*last_fork;
 
 	if (i == 0)
 	{
@@ -95,18 +97,18 @@ static int init_forks(t_forks *forks, int i)
 	return (EXIT_SUCCESS);
 }
 
-int init_task(void)
+int	init_task(void)
 {
-	t_philosopher *philosopher;
-	t_data *data;
-	int i;
+	t_philosopher	*philosopher;
+	t_data			*data;
+	int				i;
 
 	data = get_data();
 	if (data->num_philosophers == 1)
 	{
 		philosopher = &data->philosophers[0];
 		if (pthread_create(&philosopher->thread, NULL, &solo_task,
-											 philosopher) != 0)
+				philosopher) != 0)
 			return (handle_error(E_THREAD_INIT, CLEAN));
 	}
 	else
@@ -116,7 +118,7 @@ int init_task(void)
 		{
 			philosopher = &data->philosophers[i];
 			if (pthread_create(&philosopher->thread, NULL, &common_task,
-												 philosopher) != 0)
+					philosopher) != 0)
 				return (handle_error(E_THREAD_INIT, CLEAN));
 			i++;
 		}

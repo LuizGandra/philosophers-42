@@ -6,7 +6,7 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:06:01 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/28 12:52:44 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:57:26 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ typedef struct s_data
 	int				has_completed_meals;
 	t_philosopher	*philosophers;
 }					t_data;
+
+// EXIT
+void				exit_program(void);
 
 // GLOBALS
 t_data				*get_data(void);

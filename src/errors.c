@@ -6,21 +6,21 @@
 /*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:52:21 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/06/28 22:57:30 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:27:51 by lcosta-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int handle_error(char *error_msg, t_error_options option)
+int	handle_error(char *error_msg, t_error_options option)
 {
-	const char *help_msg = C_WHITE "\nUsage: ./philo\n"
-																 "	number_of_philosophers\n"
-																 "	time_to_die\n"
-																 "	time_to_eat\n"
-																 "	time_to_sleep\n"
-																 "	[number_of_times_each_philosopher_must_eat]\n\n"
-																 "All arguments must be unsigned integers.\n\n" C_RESET;
+	const char	*help_msg = C_WHITE "\nUsage: ./philo\n"
+		"	number_of_philosophers\n"
+		"	time_to_die\n"
+		"	time_to_eat\n"
+		"	time_to_sleep\n"
+		"	[number_of_times_each_philosopher_must_eat]\n\n"
+		"All arguments must be unsigned integers.\n\n" C_RESET;
 
 	if (option == CLEAN)
 	{
