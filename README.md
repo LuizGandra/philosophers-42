@@ -78,6 +78,7 @@ Features
 - `src/tasks.c`: defines the task that each thread (philosopher) will execute.
 - `src/watch.c`: watch philosophers states to detect death or completion.
 - `src/*.c`: error handling, validations, utility functions, and the rest of the program logic.
+- `src/lib/*.c`: auxiliary functions for managing memory and mutexes.
 
 ## License
 
