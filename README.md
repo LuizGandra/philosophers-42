@@ -15,10 +15,10 @@ Features
 
 ### Key Features
 
-- **:** each philosopher is a thread, and each fork is protected by a mutex to prevent race conditions.
-- **:** ensures no philosopher starves or causes a deadlock.
-- **:** outputs the status of each philosopher (e.g., "has taken a fork," "is eating," "is sleeping," "is thinking," "died") with timestamps in milliseconds.
-- **:** stops when a philosopher dies or when all philosophers have eaten the specified number of times (if provided).
+- **Threads and Mutexes:** each philosopher is a thread, and each fork is protected by a mutex to prevent race conditions.
+- **Deadlock and Starvation Prevention:** ensures no philosopher starves or causes a deadlock.
+- **Status Monitoring and Logging:** outputs the status of each philosopher (e.g., "has taken a fork," "is eating," "is sleeping," "is thinking," "died") with timestamps in milliseconds.
+- **Automatic program termination:** stops when a philosopher dies or when all philosophers have eaten the specified number of times (if provided).
 
 ### Restrictions
 
