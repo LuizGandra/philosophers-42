@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: luizc <luizc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:52:21 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/07/01 18:27:51 by lcosta-g         ###   ########.fr       */
+/*   Updated: 2025/07/07 08:27:12 by luizc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	handle_error(char *error_msg, t_error_options option)
 {
-	const char	*help_msg = C_WHITE "\nUsage: ./philo\n"
+	const char	*help_msg = C_WHITE "\nUsage: ./philosophers\n"
 		"	number_of_philosophers\n"
 		"	time_to_die\n"
 		"	time_to_eat\n"
